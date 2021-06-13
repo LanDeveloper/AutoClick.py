@@ -6,4 +6,4 @@
 #### [F8]觸發/停止連點功能
 #### [F9]離開程式
 
-This Script Coded by [Lan,Yi-Tin|https://github.com/lanyitin]
+This Script Coded by [Lan,Yi-Tin](https://github.com/lanyitin)
