@@ -4,15 +4,17 @@ from pynput.keyboard import Listener ,Key
 import asyncio
 
 auto_click_toggle:bool = False
+rate:float = 0.05
 
 async def click_loop():
     mouse_controller = Controller()
     global auto_click_toggle
+    global rate
     while True:
         if auto_click_toggle:
             mouse_controller.click(Button.left, 2)
             #print('click!!')
-        await asyncio.sleep(0.1)
+        await asyncio.sleep(rate)
 
 def on_press(key):
     global auto_click_toggle
@@ -29,7 +31,9 @@ def transmit_keys():
 
 async def main():
     global auto_click_toggle
-    print('auto click start!!')
+    global rate
+    print('The Program Start!!')
+    print('change rate(default=0.02) hot key is [F7]')
     print('start/stop hot key is [F8]')
     print('leave hot key is [F9]')
     asyncio.ensure_future(click_loop())
@@ -44,6 +48,11 @@ async def main():
             auto_click_toggle = not auto_click_toggle
         elif key == Key.f9:
             break
+        elif key == Key.f7:
+            if auto_click_toggle:
+                print('you need to stop loop')
+            else:
+                rate = float(input("Enter a float for rate:"))
 
 asyncio.run(main())
 print('leave auto click process')
